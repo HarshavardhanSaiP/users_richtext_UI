@@ -1,0 +1,21 @@
+.main-container {
+    height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;   
+  }
+  
+  .table-container {
+    width: 80%; 
+    height: 60%; 
+  }
+  
+  ag-grid-angular {
+    width: 100%;
+    height: 100%; 
+  }
+
+  :host ::ng-deep .ag-body .ag-layout-auto-height{
+    height: 53vh !important;
+  }
+  

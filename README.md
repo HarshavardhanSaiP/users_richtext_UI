@@ -1,27 +1,29 @@
-# RecipeUi
+Description:
+The frontend provides a user-friendly interface to view, search, and explore recipes fetched from the backend service.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.1.
+Features:
+Responsive user interface using Angular.
+Search recipes by name, cuisine.
+Displays recipe details, including ingredients and preparation instructions.
+Handles smooth UI transitions and data loading.
 
-## Development server
+Technologies Used:
+Angular 18 with standalone components.
+RxJS for handling asynchronous operations.
+SCSS for styling.
+AG-Grid for Tabular components
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Setup:
+1.Clone the Repository
+2.Install Dependencies
+    npm install
+3.Run the Application
+    ng serve
 
-## Code scaffolding
+Key Components:
+Search Bar: Allows searching recipes by text input.
+Recipe List: Displays search results in a card format.
+Recipe Details Page: Provides detailed information about a selected recipe.    
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Notes:
+Ensure the backend is running at http://localhost:8080 or adjust the API endpoint in src/environments/environment.ts.

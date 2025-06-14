@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@import "ag-grid-community/styles/ag-grid.css";
+@import "ag-grid-community/styles/ag-theme-alpine.css";
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw; 
+    height: 100vh; 
+    background-image: url('./assets/images/jimmy-dean-IanqI4W4fco-unsplash.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-color: rgba(0, 0, 0, 0.5);
+    filter: blur(2px);
+    background-blend-mode: darken; 
+    z-index: -1; 
+  }
+  

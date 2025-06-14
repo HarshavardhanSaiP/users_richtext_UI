@@ -1,0 +1,58 @@
+<div class="flex-body">
+    <div class="recipe-card">
+        <!-- Recipe Header -->
+        <div class="recipe-header">
+          <img class="recipe-image" [src]="recipe?.image" [alt]="recipe?.name" loading="lazy" />
+          <h1 class="recipe-title">{{ recipe?.name }}</h1>
+          <p class="recipe-subtitle">
+            Cuisine: {{ recipe?.cuisine }} | Servings: {{ recipe?.servings }} |
+            Difficulty: {{ recipe?.difficulty }}
+          </p>
+          <p class="recipe-meta">
+            Prep Time: {{ recipe?.prepTimeMinutes }} min | Cook Time:
+            {{ recipe?.cookTimeMinutes }} min | Calories:
+            {{ recipe?.caloriesPerServing }} per serving
+          </p>
+        </div>
+      
+        <!-- Recipe Body -->
+        <div class="recipe-body">
+          <!-- Ingredients -->
+          <h2>Ingredients</h2>
+          <ul class="ingredients-list">
+            @for(ingredient of recipe?.ingredients; track ingredient){
+                <li>{{ ingredient }}</li>
+         
+            }
+             </ul>
+      
+          <!-- Instructions -->
+          <h2>Instructions</h2>
+          <ol class="instructions-list">
+            @for(instruction of recipe?.instructions; track instruction){
+                <li>{{ instruction }}</li>
+            }
+          </ol>
+        </div>
+      
+        <!-- Recipe Footer -->
+        <div class="recipe-footer">
+          <p>
+            Rating: <span class="rating">{{ recipe?.rating }}</span> ({{ recipe?.reviewCount }} reviews)
+          </p>
+      
+          <p>
+            Meal Type: {{ recipe?.mealType?.join(', ') }}
+          </p>
+          <div class="tags-container">
+            <span>Tags:</span>
+            @for(tag of recipe?.tags; track tag){
+            <ng-container >
+              <span class="tag">{{ tag }}</span>
+            </ng-container>
+        }
+          </div> 
+        </div>
+      </div>
+</div>
+  

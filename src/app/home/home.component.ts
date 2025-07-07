@@ -28,23 +28,24 @@ export class HomeComponent {
 
   onSearch(searchText: string): void {
     if(searchText.length > 2) {
-      
-      this.apiService.getRecipes(searchText).pipe(
+      this.apiService.getUsers(searchText).pipe(
         takeUntil(this.destroy$), 
         catchError((error) => {
           if (error.status === 404) {
             this.showPopup(error.error);
           } else {
             this.showPopup(constants.SERVER_NOT_AVAILABLE);
-            console.error('Error fetching recipes:', error);
+            console.error('Error fetching users:', error);
           }
           throw error; 
         })
       )
-      .subscribe((data: any[]) => {
-        this.router.navigate(['/list-recipe'], { state: { data: data } });
+      .subscribe((data: any) => {
+        // If data is { users: [...] }, extract the array
+        const usersArray = Array.isArray(data) ? data : data?.users;
+        this.apiService.setUsers(usersArray);
+        this.router.navigate(['/list-users'], { state: { data: usersArray } });
       });
-        
     }else{
       this.showPopup(constants.MIN_SEARCH_TEXT_LENGTH);
     }

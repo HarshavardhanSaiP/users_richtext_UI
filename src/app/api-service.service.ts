@@ -9,11 +9,13 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class ApiServiceService {
 
+  private userCache: any[] | null = null;
+
   constructor(private http:HttpClient) { }
 
-  getRecipes(searchText: string): Observable<any[]> {
+  getUsers(searchText: string): Observable<any[]> {
     const params = new HttpParams().set('searchText', searchText);
-    return this.http.get<any[]>(`${environment.apiUrl}api/recipes/search`, { params }).pipe(
+    return this.http.get<any[]>(`${environment.apiUrl}api/users/search`, { params }).pipe(
       catchError((error) => {
         // Log the error to the console for debugging
         console.error('Error occurred:', error);
@@ -23,4 +25,11 @@ export class ApiServiceService {
     );
   }
   
+  setUsers(users: any[]) {
+    this.userCache = users;
+  }
+
+  getCachedUsers(): any[] | null {
+    return this.userCache;
+  }
 }

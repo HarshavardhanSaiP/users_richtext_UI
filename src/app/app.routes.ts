@@ -10,7 +10,7 @@ export const routes: Routes = [
     loadComponent: () => import('./details/details.component').then((m) => m.DetailsComponent),
   },
   {
-    path: 'list-recipe',
+    path: 'list-users',
     loadComponent: () => import('./table-view/table-view.component').then((m) => m.TableViewComponent),
   },
   { path: '**', redirectTo: '' }, // Wildcard route

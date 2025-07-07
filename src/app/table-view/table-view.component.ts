@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AgGridModule } from 'ag-grid-angular';
 import { ClientSideRowModelModule, ColDef, GridOptions } from 'ag-grid-community';
+import { ApiServiceService } from '../api-service.service';
 
 @Component({
   selector: 'app-table-view',
@@ -14,13 +15,13 @@ export class TableViewComponent {
 
   @Input("rowData") rowData!: any[];
   columnDefs : ColDef[] = [
-    {headerName: 'Recipe Name', field: 'name', filter: true , filterParams:{maxNumConditions:1}},
-    {headerName: 'Servings', field: 'servings', filter: true , filterParams:{maxNumConditions:1}},
-    {headerName: 'Difficulty', field: 'difficulty', filter: true , filterParams:{maxNumConditions:1}},
-    {headerName: 'Preparation Time', field: 'prepTimeMinutes', filter: true , filterParams:{maxNumConditions:1}},
-    {headerName: 'Cuisine', field: 'cuisine', filter: true , filterParams:{maxNumConditions:1}},
-    {headerName: 'Rating', field: 'rating', filter: true , filterParams:{maxNumConditions:1}},
-    {headerName: 'CaloriesPerServing', field: 'caloriesPerServing', filter: true , filterParams:{maxNumConditions:1}},
+    {headerName: 'First Name', field: 'firstName', filter: true , filterParams:{maxNumConditions:1}},
+    {headerName: 'Last Name', field: 'lastName', filter: true , filterParams:{maxNumConditions:1}},
+    {headerName: 'Email', field: 'email', filter: true , filterParams:{maxNumConditions:1}},
+    {headerName: 'Username', field: 'username', filter: true , filterParams:{maxNumConditions:1}},
+    {headerName: 'Gender', field: 'gender', filter: true , filterParams:{maxNumConditions:1}},
+    {headerName: 'Age', field: 'age', filter: true , filterParams:{maxNumConditions:1}},
+    {headerName: 'Role', field: 'role', filter: true , filterParams:{maxNumConditions:1}},
   ];
 
   gridOptions: GridOptions = {
@@ -29,9 +30,10 @@ export class TableViewComponent {
     },
     onRowClicked: this.onRowClicked.bind(this)
   }
-  constructor(private router: Router) {}
+  constructor(private router: Router, private apiService: ApiServiceService) {}
 
   onRowClicked(event: any): void {
+    console.log('User sent to details:', event.data);
     this.router.navigate(['/details', event.data.id], {state: {data: event.data}});
   }
 
@@ -41,6 +43,9 @@ export class TableViewComponent {
   
   ngOnInit() {
     this.rowData = history.state.data;
+    if (!this.rowData) {
+      this.rowData = this.apiService.getCachedUsers() || [];
+    }
   }
 
  

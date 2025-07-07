@@ -21,15 +21,15 @@ describe('ApiServiceService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-  it('should call getRecipes and return data', () => {
+  it('should call getUsers and return data', () => {
     const searchText = 'test';
-    const mockData = [{ id: 1, name: 'Recipe 1' }];
+    const mockData = [{ id: 1, name: 'User 1' }];
 
-    service.getRecipes(searchText).subscribe((data) => {
+    service.getUsers(searchText).subscribe((data) => {
       expect(data).toEqual(mockData);
     });
 
-    const req = httpMock.expectOne(`${environment.apiUrl}api/recipes/search?searchText=${searchText}`);
+    const req = httpMock.expectOne(`${environment.apiUrl}api/users/search?searchText=${searchText}`);
     expect(req.request.method).toBe('GET');
     req.flush(mockData);
   });

@@ -14,7 +14,11 @@ export class DetailsComponent {
   constructor(private route: ActivatedRoute, private router: Router) {}
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.user = history.state.data;    
+    const rawUser = history.state.data;
+    if (rawUser) {
+      this.user = rawUser;
+      console.log('User for details:', this.user);
+    }
   }
 
   goBack() {

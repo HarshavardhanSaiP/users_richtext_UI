@@ -1,58 +1,83 @@
-<div class="flex-body">
-    <div class="recipe-card">
-        <!-- Recipe Header -->
-        <div class="recipe-header">
-          <img class="recipe-image" [src]="recipe?.image" [alt]="recipe?.name" loading="lazy" />
-          <h1 class="recipe-title">{{ recipe?.name }}</h1>
-          <p class="recipe-subtitle">
-            Cuisine: {{ recipe?.cuisine }} | Servings: {{ recipe?.servings }} |
-            Difficulty: {{ recipe?.difficulty }}
-          </p>
-          <p class="recipe-meta">
-            Prep Time: {{ recipe?.prepTimeMinutes }} min | Cook Time:
-            {{ recipe?.cookTimeMinutes }} min | Calories:
-            {{ recipe?.caloriesPerServing }} per serving
-          </p>
+<div class="details-form-bg">
+  <div class="details-form-card two-column">
+    <div class="details-form-columns">
+      <!-- Left: Personal Details -->
+      <div class="details-form-left">
+        <div class="details-form-header">
+          <img class="details-avatar" [src]="user?.image" [alt]="user?.firstName + ' ' + user?.lastName" loading="lazy" />
+          <div class="details-title-group">
+            <h1 class="details-title">{{ user?.firstName }} {{ user?.lastName }}</h1>
+            <div class="details-meta">
+              <div><span class="meta-key">Gender:</span> <span class="meta-value">{{ user?.gender }}</span></div>
+              <div><span class="meta-key">Age:</span> <span class="meta-value">{{ user?.age }}</span></div>
+              <div><span class="meta-key">Role:</span> <span class="meta-value">{{ user?.role }}</span></div>
+              <div><span class="meta-key">Username:</span> <span class="meta-value">{{ user?.username }}</span></div>
+              <div><span class="meta-key">Email:</span> <span class="meta-value">{{ user?.email }}</span></div>
+              <div><span class="meta-key">Phone:</span> <span class="meta-value">{{ user?.phone }}</span></div>
+            </div>
+          </div>
         </div>
-      
-        <!-- Recipe Body -->
-        <div class="recipe-body">
-          <!-- Ingredients -->
-          <h2>Ingredients</h2>
-          <ul class="ingredients-list">
-            @for(ingredient of recipe?.ingredients; track ingredient){
-                <li>{{ ingredient }}</li>
-         
-            }
-             </ul>
-      
-          <!-- Instructions -->
-          <h2>Instructions</h2>
-          <ol class="instructions-list">
-            @for(instruction of recipe?.instructions; track instruction){
-                <li>{{ instruction }}</li>
-            }
-          </ol>
+        <div class="details-form-section">
+          <h2>Physical</h2>
+          <div class="form-row"><span class="form-label">Blood Group:</span><span class="form-value">{{ user?.bloodGroup }}</span></div>
+          <div class="form-row"><span class="form-label">Height:</span><span class="form-value">{{ user?.height }} cm</span></div>
+          <div class="form-row"><span class="form-label">Weight:</span><span class="form-value">{{ user?.weight }} kg</span></div>
+          <div class="form-row"><span class="form-label">Eye Color:</span><span class="form-value">{{ user?.eyeColor }}</span></div>
         </div>
-      
-        <!-- Recipe Footer -->
-        <div class="recipe-footer">
-          <p>
-            Rating: <span class="rating">{{ recipe?.rating }}</span> ({{ recipe?.reviewCount }} reviews)
-          </p>
-      
-          <p>
-            Meal Type: {{ recipe?.mealType?.join(', ') }}
-          </p>
-          <div class="tags-container">
-            <span>Tags:</span>
-            @for(tag of recipe?.tags; track tag){
-            <ng-container >
-              <span class="tag">{{ tag }}</span>
-            </ng-container>
-        }
-          </div> 
+        <div class="details-form-section">
+          <h2>Hair</h2>
+          <div class="form-row"><span class="form-label">Color:</span><span class="form-value">{{ user?.hairPojo?.color }}</span></div>
+          <div class="form-row"><span class="form-label">Type:</span><span class="form-value">{{ user?.hairPojo?.type }}</span></div>
+        </div>
+        <div class="details-form-section">
+          <h2>Address</h2>
+          <div class="form-row"><span class="form-label">Address:</span><span class="form-value">{{ user?.addressPojo?.address }}</span></div>
+          <div class="form-row"><span class="form-label">City:</span><span class="form-value">{{ user?.addressPojo?.city }}</span></div>
+          <div class="form-row"><span class="form-label">State:</span><span class="form-value">{{ user?.addressPojo?.state }}</span></div>
+          <div class="form-row"><span class="form-label">Postal Code:</span><span class="form-value">{{ user?.addressPojo?.postalCode }}</span></div>
+          <div class="form-row"><span class="form-label">Country:</span><span class="form-value">{{ user?.addressPojo?.country }}</span></div>
+          <div class="form-row"><span class="form-label">Coordinates:</span><span class="form-value">Lat: {{ user?.addressPojo?.coordinatesPojo?.lat }}, Lng: {{ user?.addressPojo?.coordinatesPojo?.lng }}</span></div>
+        </div>
+        <div class="details-form-section">
+          <h2>Bank</h2>
+          <div class="form-row"><span class="form-label">Card Number:</span><span class="form-value">{{ user?.bankPojo?.cardNumber }}</span></div>
+          <div class="form-row"><span class="form-label">Card Type:</span><span class="form-value">{{ user?.bankPojo?.cardType }}</span></div>
+          <div class="form-row"><span class="form-label">Expires:</span><span class="form-value">{{ user?.bankPojo?.cardExpire }}</span></div>
+          <div class="form-row"><span class="form-label">IBAN:</span><span class="form-value">{{ user?.bankPojo?.iban }}</span></div>
+          <div class="form-row"><span class="form-label">Currency:</span><span class="form-value">{{ user?.bankPojo?.currency }}</span></div>
+        </div>
+        <div class="details-form-section">
+          <h2>Crypto</h2>
+          <div class="form-row"><span class="form-label">Coin:</span><span class="form-value">{{ user?.cryptoPojo?.coin }}</span></div>
+          <div class="form-row"><span class="form-label">Wallet:</span><span class="form-value">{{ user?.cryptoPojo?.wallet }}</span></div>
+          <div class="form-row"><span class="form-label">Network:</span><span class="form-value">{{ user?.cryptoPojo?.network }}</span></div>
+        </div>
+        <div class="details-form-section">
+          <h2>University</h2>
+          <div class="form-row"><span class="form-label">Name:</span><span class="form-value">{{ user?.university }}</span></div>
         </div>
       </div>
+      <!-- Right: Company Details -->
+      <div class="details-form-right">
+        <div class="details-form-section">
+          <h2>Company</h2>
+          <div class="form-row"><span class="form-label">Name:</span><span class="form-value">{{ user?.companyPojo?.name }}</span></div>
+          <div class="form-row"><span class="form-label">Department:</span><span class="form-value">{{ user?.companyPojo?.department }}</span></div>
+          <div class="form-row"><span class="form-label">Title:</span><span class="form-value">{{ user?.companyPojo?.title }}</span></div>
+          <div class="form-row"><span class="form-label">Address:</span><span class="form-value">{{ user?.companyPojo?.addressPojo?.address }}</span></div>
+          <div class="form-row"><span class="form-label">City:</span><span class="form-value">{{ user?.companyPojo?.addressPojo?.city }}</span></div>
+          <div class="form-row"><span class="form-label">State:</span><span class="form-value">{{ user?.companyPojo?.addressPojo?.state }}</span></div>
+          <div class="form-row"><span class="form-label">Postal Code:</span><span class="form-value">{{ user?.companyPojo?.addressPojo?.postalCode }}</span></div>
+          <div class="form-row"><span class="form-label">Country:</span><span class="form-value">{{ user?.companyPojo?.addressPojo?.country }}</span></div>
+          <div class="form-row"><span class="form-label">Coordinates:</span><span class="form-value">Lat: {{ user?.companyPojo?.addressPojo?.coordinatesPojo?.lat }}, Lng: {{ user?.companyPojo?.addressPojo?.coordinatesPojo?.lng }}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="details-footer-sticky">
+    <button class="back-btn" (click)="goBack()" aria-label="Back to Table View">
+      &#8592; Back
+    </button>
+  </div>
 </div>
   

@@ -1,9 +1,21 @@
-
     <div class="search-container">
-        <div class="search-bar">
-            <input type="text" [placeholder]="placeHolder" (keyup.enter)="onSearch(searchInput.value)"  #searchInput>
-            <button (click)="onSearch(searchInput.value)">search</button>
-        </div>
+        <form (ngSubmit)="onSearch()" class="search-bar">
+            <input
+                type="text"
+                [placeholder]="searchByIdOrEmail ? 'Enter ID or Email' : placeHolder"
+                [(ngModel)]="searchText"
+                name="searchText"
+            />
+            <button type="submit">Search</button>
+            <label class="id-email-radio" [title]="'Search by ID or Email'">
+                <input
+                    type="checkbox"
+                    [(ngModel)]="searchByIdOrEmail"
+                    name="searchByIdOrEmail"
+                />
+                Search by ID/Email
+            </label>
+        </form>
     </div>
     @if(isPopupVisible){
         <div class="popup" >

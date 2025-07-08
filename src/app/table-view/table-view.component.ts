@@ -20,7 +20,7 @@ export class TableViewComponent {
     {headerName: 'Email', field: 'email', filter: true , filterParams:{maxNumConditions:1}},
     {headerName: 'Username', field: 'username', filter: true , filterParams:{maxNumConditions:1}},
     {headerName: 'Gender', field: 'gender', filter: true , filterParams:{maxNumConditions:1}},
-    {headerName: 'Age', field: 'age', filter: true , filterParams:{maxNumConditions:1}},
+    {headerName: 'Age', field: 'age', filter: true, filterParams:{maxNumConditions:1}, sortable: true, sort: 'asc'},
     {headerName: 'Role', field: 'role', filter: true , filterParams:{maxNumConditions:1}},
   ];
 
@@ -43,12 +43,15 @@ export class TableViewComponent {
   
   ngOnInit() {
     this.rowData = history.state.data;
-    if (!this.rowData) {
+    if (!this.rowData || this.rowData.length === 0) {
       this.rowData = this.apiService.getCachedUsers() || [];
     }
   }
 
- 
+  goBack() {
+    this.apiService.clearUsers();
+    this.router.navigate(['/']);
+  }
   
 
 }

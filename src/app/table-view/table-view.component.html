@@ -1,18 +1,21 @@
 <div class="main-container">
   <div class="table-container">
     <ag-grid-angular
-    style="width: 100%; height: 100%;"
-    class="ag-theme-alpine"
-    [rowData]="rowData"
-    [columnDefs]="columnDefs"
-    [rowMultiSelectWithClick]="true"
-    [animateRows]="true"
-    [pagination]="true"
-    [paginationPageSizeSelector]="false"
-    domLayout="autoHeight"
-    [paginationPageSize]="10"
-    [gridOptions]="gridOptions"
-    (gridReady)="onGridReady($event)"
+      style="width: 100%; height: 100%;"
+      class="ag-theme-alpine"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [rowMultiSelectWithClick]="true"
+      [animateRows]="true"
+      [pagination]="true"
+      [paginationPageSizeSelector]="false"
+      domLayout="autoHeight"
+      [paginationPageSize]="10"
+      [gridOptions]="gridOptions"
+      (gridReady)="onGridReady($event)"
     ></ag-grid-angular>
+    <div class="back-arrow-below-table">
+      <span class="back-arrow" (click)="goBack()" aria-label="Back to Home" title="Go back to Home">|&lt;</span>
+    </div>
   </div>
 </div>

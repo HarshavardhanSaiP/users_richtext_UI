@@ -15,11 +15,11 @@ describe('DetailsComponent', () => {
       },
     };
 
-    // Mock history.state with fake recipe data
+    // Mock history.state with fake user data
     Object.defineProperty(window, 'history', {
       value: {
         state: {
-          data: { name: 'Test Recipe', servings: 4 },
+          data: { firstName: 'Test', lastName: 'User', hairPojo: { color: 'Brown' } },
         },
       },
     });
@@ -47,8 +47,8 @@ describe('DetailsComponent', () => {
     expect(component.id).toEqual('123'); // Check if the correct 'id' is retrieved
   });
 
-  it('should retrieve recipe data from history.state', () => {
+  it('should retrieve user data from history.state', () => {
     component.ngOnInit();
-    expect(component.recipe).toEqual({ name: 'Test Recipe', servings: 4 }); // Validate recipe data
+    expect(component.user).toEqual({ firstName: 'Test', lastName: 'User', hairPojo: { color: 'Brown' } }); // Validate user data
   });
 });

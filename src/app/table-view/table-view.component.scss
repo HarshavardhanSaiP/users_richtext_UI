@@ -19,3 +19,43 @@
     height: 53vh !important;
   }
   
+  .table-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0 0 0;
+  }
+
+  .back-arrow-under-name {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+    margin-left: 2.5rem; 
+  }
+
+  .back-arrow {
+    cursor: pointer;
+    font-size: 2rem;
+    color: red;
+    background: none;
+    border: none;
+    outline: none;
+  }
+
+  .back-arrow-below-table {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+    margin-right: 40rem;
+    padding-top: 1rem
+  }
+
+  .back-arrow {
+    cursor: pointer;
+    font-size: 2rem;
+    color: white;
+    background: none;
+    border: none;
+    outline: none;
+  }
+  

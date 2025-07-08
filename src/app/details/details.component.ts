@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApiServiceService } from '../api-service.service';
 
 @Component({
   selector: 'app-details',
@@ -11,7 +12,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DetailsComponent {
   id: string | null = null;
   user! : any;
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private apiService: ApiServiceService
+  ) {}
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     const rawUser = history.state.data;
@@ -22,6 +27,13 @@ export class DetailsComponent {
   }
 
   goBack() {
-    this.router.navigate(['/list-users']);
+    const cachedUsers = this.apiService.getCachedUsers();
+    if (cachedUsers && cachedUsers.length > 1) {
+      // Came from free text search, show full list
+      this.router.navigate(['/list-users']);
+    } else {
+      // Came from ID/Email search, show just this user
+      this.router.navigate(['/list-users'], { state: { data: [this.user] } });
+    }
   }
 }

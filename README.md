@@ -1,29 +1,38 @@
-Description:
-The frontend provides a user-friendly interface to view, search, and explore recipes fetched from the backend service.
+# User Search & Details App (Interview Project)
 
-Features:
-Responsive user interface using Angular.
-Search recipes by name, cuisine.
-Displays recipe details, including ingredients and preparation instructions.
-Handles smooth UI transitions and data loading.
+Hi! This is a simple Angular app I built for an interview project. It lets you search for users, view them in a table, and see details for each user. Here's how it works and how to run it:
 
-Technologies Used:
-Angular 18 with standalone components.
-RxJS for handling asynchronous operations.
-SCSS for styling.
-AG-Grid for Tabular components
+## What you can do
+- **Search for users**
+  - Type at least 3 characters to search by name, email, etc.
+  - Or, switch to "ID/Email" mode to search for a specific user.
+- **See results in a table**
+  - The table shows all matching users.
+  - You can sort by age (default is youngest to oldest), and click the column to change the order.
+  - Click any row to see more details about that user.
+- **View user details**
+  - See all info for a user on a separate page.
+  - Click the back arrow to return to your search results.
+- **Navigation**
+  - The back arrow below the table takes you home and clears your previous search.
 
-Setup:
-1.Clone the Repository
-2.Install Dependencies
-    npm install
-3.Run the Application
-    ng serve
+## How it works
+- The app remembers your last search results while you browse details.
+- If you start a new search or go home, it clears the old results.
+- Error messages pop up if you search with too few characters or if there's a problem.
 
-Key Components:
-Search Bar: Allows searching recipes by text input.
-Recipe List: Displays search results in a card format.
-Recipe Details Page: Provides detailed information about a selected recipe.    
+## Tech used
+- Angular 18 (standalone components)
+- AG-Grid for the table
+- SCSS for styles
+- RxJS for async stuff
 
-Notes:
-Ensure the backend is running at http://localhost:8080 or adjust the API endpoint in src/environments/environment.ts.
+## How to run it
+1. Clone this repo
+2. Run `npm install` in the `recipe-ui` folder
+3. Start the app with `ng serve`
+4. Open [http://localhost:4200](http://localhost:4200) in your browser
+
+**Note:**
+- The app expects a backend running at `http://localhost:8080`. If yours is different, update the URL in `src/environments/environment.ts`.
+

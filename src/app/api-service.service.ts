@@ -13,15 +13,17 @@ export class ApiServiceService {
 
   constructor(private http:HttpClient) { }
 
+  private handleError(operation = 'operation') {
+    return (error: any) => {
+      console.error(`${operation} failed:`, error);
+      return throwError(error);
+    };
+  }
+
   getUsers(searchText: string): Observable<any[]> {
     const params = new HttpParams().set('searchText', searchText);
     return this.http.get<any[]>(`${environment.apiUrl}api/users/search`, { params }).pipe(
-      catchError((error) => {
-        // Log the error to the console for debugging
-        console.error('Error occurred:', error);
-        // Handle the error as per your application logic
-        return throwError(error);
-      })
+      catchError(this.handleError('getUsers'))
     );
   }
   
@@ -32,4 +34,17 @@ export class ApiServiceService {
   getCachedUsers(): any[] | null {
     return this.userCache;
   }
+
+  getUserByIdOrEmail(idOrEmail: string): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}api/users/find`, {
+      params: { id: idOrEmail }
+    }).pipe(
+      catchError(this.handleError('getUserByIdOrEmail'))
+    );
+  }
+  
+  clearUsers() {
+    this.userCache = null;
+  }
+
 }

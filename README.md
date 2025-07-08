@@ -29,7 +29,7 @@ Hi! This is a simple Angular app I built for an interview project. It lets you s
 
 ## How to run it
 1. Clone this repo
-2. Run `npm install` in the `recipe-ui` folder
+2. Run `npm install` in the `users-ui` folder
 3. Start the app with `ng serve`
 4. Open [http://localhost:4200](http://localhost:4200) in your browser
 

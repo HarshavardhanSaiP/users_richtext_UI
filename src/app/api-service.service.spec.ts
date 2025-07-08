@@ -46,4 +46,37 @@ describe('ApiServiceService', () => {
     const req = httpMock.expectOne(`${environment.apiUrl}api/users/search?searchText=${searchText}`);
     req.error(errorEvent);
   });
+
+  it('should call getUserByIdOrEmail and return data', () => {
+    const idOrEmail = '1';
+    const mockUser = { id: 1, firstName: 'John', lastName: 'Doe' };
+    service.getUserByIdOrEmail(idOrEmail).subscribe((data) => {
+      expect(data).toEqual(mockUser);
+    });
+    const req = httpMock.expectOne(`${environment.apiUrl}api/users/find?id=${idOrEmail}`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockUser);
+  });
+
+  it('should handle error on getUserByIdOrEmail', (done) => {
+    const idOrEmail = '1';
+    const errorEvent = new ProgressEvent('error');
+    service.getUserByIdOrEmail(idOrEmail).subscribe({
+      next: () => fail('should have failed with an error'),
+      error: (error) => {
+        expect(error).toBeTruthy();
+        done();
+      }
+    });
+    const req = httpMock.expectOne(`${environment.apiUrl}api/users/find?id=${idOrEmail}`);
+    req.error(errorEvent);
+  });
+
+  it('should set, get, and clear cached users', () => {
+    const users = [{ id: 1, firstName: 'John' }];
+    service.setUsers(users);
+    expect(service.getCachedUsers()).toEqual(users);
+    service.clearUsers();
+    expect(service.getCachedUsers()).toBeNull();
+  });
 });

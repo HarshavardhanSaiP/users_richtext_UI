@@ -69,4 +69,31 @@ describe('TableViewComponent', () => {
     expect(component.rowData).toEqual([{ id: 2, firstName: 'Jane', lastName: 'Smith', role: 'user' }]);
     done();
   });
+
+  it('should set rowData to empty array if no history.state.data and no cached users', () => {
+    Object.defineProperty(window, 'history', {
+      value: { state: { data: undefined } }
+    });
+    spyOn(apiService, 'getCachedUsers').and.returnValue(null);
+    component.ngOnInit();
+    expect(component.rowData).toEqual([]);
+  });
+
+  it('should clear users and navigate to home on goBack', () => {
+    spyOn(apiService, 'clearUsers');
+    spyOn(router, 'navigate');
+    component.goBack();
+    expect(apiService.clearUsers).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith(['/']);
+  });
+
+  it('should have correct column definitions', () => {
+    expect(component.columnDefs.some(col => col.field === 'firstName')).toBeTrue();
+    expect(component.columnDefs.some(col => col.field === 'lastName')).toBeTrue();
+    expect(component.columnDefs.some(col => col.field === 'email')).toBeTrue();
+    expect(component.columnDefs.some(col => col.field === 'username')).toBeTrue();
+    expect(component.columnDefs.some(col => col.field === 'gender')).toBeTrue();
+    expect(component.columnDefs.some(col => col.field === 'age')).toBeTrue();
+    expect(component.columnDefs.some(col => col.field === 'role')).toBeTrue();
+  });
 });
